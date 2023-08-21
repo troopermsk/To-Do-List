@@ -134,3 +134,81 @@ void addToDOEntry(int *i) {
     printf("Operation done successfully! Press any key to go back to main menu \n");
         getch();
 }
+
+int deleteToDo(int *i) {
+	if (check_splash == 1) {
+		system("Color 0F");
+		pass_check = 1;
+	} else {
+		system("Color 31");
+	}
+	system("cls");
+	int n, j;
+	if(*i) {
+		printf("Your ToDo list: \n");
+		for(j = 0; j < *i; j++) {
+			if (check_splash == 1) {
+				printf("%d.)  ", private_todo[j].count_nodes);
+				printf("%s\n", private_todo[j].entry_str);
+			} else {
+				printf("%d.)  ", todo_main[j].count_nodes);
+				printf("%s\n", todo_main[j].entry_str);
+			}
+		}
+		printf("\nEnter the ToDo number you want to delete: ");
+		scanf("%d", &n);
+
+		for(j = 0; j < *i; j++) {
+			if (check_splash == 1) {
+				if(n == private_todo[j].count_nodes) {
+					beeping();
+					if(n == private_todo[(*i-1)].count_nodes) {
+						(*i)--;
+						j--;
+						printf("\n\nToDo deleted! ");
+						break;
+					}
+					for(int c = n-1; c < (*i)-1; c++) {
+						strcpy(private_todo[c].entry_str, private_todo[c+1].entry_str);
+						strcpy(private_todo[c].time_str, private_todo[c+1].time_str);
+						private_todo[c].count_nodes = private_todo[c+1].count_nodes;
+						(*i)--;
+					}
+					for(int c = 0; c < *i; c++) {
+						private_todo[c].count_nodes = (c+1);
+					}
+					printf("\n\nToDo deleted! ");
+					break;
+				}
+			} else {
+				if(n == todo_main[j].count_nodes) {
+					beeping();
+					if(n == todo_main[(*i-1)].count_nodes) {
+						(*i)--;
+						j--;
+						printf("\n\nToDo deleted! ");
+						break;
+					}
+					for(int c = n-1; c < (*i)-1; c++) {
+						strcpy(todo_main[c].entry_str, todo_main[c+1].entry_str);
+						strcpy(todo_main[c].time_str, todo_main[c+1].time_str);
+						todo_main[c].count_nodes = todo_main[c+1].count_nodes;
+						(*i)--;
+					}
+					for(int c = 0; c < *i; c++) {
+						todo_main[c].count_nodes = (c+1);
+					}
+					printf("\n\nToDo deleted! ");
+					break;
+				}
+			}
+		}
+		if(j == *i) {
+			printf("\aThe ToDo number you entered does not exist!\n\n");
+		}
+	} else {
+		printf("\n\nToDo list is empty, add ToDos first then you can delete them!\n\n");
+	}
+	printf("Enter any key to go back...\n");
+   	getch();
+}
