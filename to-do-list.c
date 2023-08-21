@@ -3,6 +3,7 @@
 #include <time.h>
 #include <windows.h>
 #include <string.h>
+#include <conio.h>
 
 //implementing the struct concept here for the to-do-list
 typedef struct ToDo {
@@ -20,6 +21,7 @@ todo private_todo[200];
 void displaySplashScreen();
 void beepsound();
 void addToDOEntry(int *i);
+void deleteToDoEntry(int *i);
 //Global variables
 static int maintodo_count = 0;
 static int private_count = 0;
@@ -52,6 +54,7 @@ int main() {
             break;
         case 2:
             //call the delete function
+            deleteToDoEntry(&maintodo_count);
             break;
         default:
             printf("Invalid input! Please enter a number from one of the six options listed above. \n");
