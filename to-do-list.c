@@ -145,7 +145,7 @@ int deleteToDo(int *i) {
 	system("cls");
 	int n, j;
 	if(*i) {
-		printf("Your ToDo list: \n");
+		printf("Your current ToDo list: \n");
 		for(j = 0; j < *i; j++) {
 			if (check_splash == 1) {
 				printf("%d.)  ", private_todo[j].count_nodes);
@@ -155,7 +155,7 @@ int deleteToDo(int *i) {
 				printf("%s\n", todo_main[j].entry_str);
 			}
 		}
-		printf("\nEnter the ToDo number you want to delete: ");
+		printf("\nEnter the ToDo entry number you want to delete: ");
 		scanf("%d", &n);
 
 		for(j = 0; j < *i; j++) {
@@ -207,8 +207,8 @@ int deleteToDo(int *i) {
 			printf("\aThe ToDo number you entered does not exist!\n\n");
 		}
 	} else {
-		printf("\n\nToDo list is empty, add ToDos first then you can delete them!\n\n");
+		printf("\n\nToDo list is empty, you must add ToDos first then you can delete them!\n\n");
 	}
-	printf("Enter any key to go back...\n");
+	printf("You may enter any key to go back...\n");
    	getch();
 }
